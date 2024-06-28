@@ -70,7 +70,7 @@ action :remove do
       action [:stop, :disable]
     end
 
-    %w(/etc/redborder-mem2incident.each do |path|
+    %w(/etc/redborder-mem2incident).each do |path|
       directory path do
         recursive true
         action :delete
