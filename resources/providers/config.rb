@@ -7,11 +7,11 @@ action :add do
   begin
     user = new_resource.user
 
-    memcached_servers = new_resources.memcached_servers
-    api_endpoint = new_resources.api_endpoint
-    insecure_skip_verify = new_resources.insecure_skip_verify
-    loop_interval = new_resources.loop_interval
-    auth_token = new_resources.auth_token
+    memcached_servers = new_resource.memcached_servers
+    api_endpoint = new_resource.api_endpoint
+    insecure_skip_verify = new_resource.insecure_skip_verify
+    loop_interval = new_resource.loop_interval
+    auth_token = new_resource.auth_token
 
     dnf_package 'redborder-mem2incident' do
       action :upgrade
