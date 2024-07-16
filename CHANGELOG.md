@@ -1,6 +1,11 @@
 cookbook-mem2incident CHANGELOG
 ===============
 
+## 0.0.2
+
+  - Miguel Negrón
+    - [fb25c64] Merge pull request #1 from redBorder/feature/incident_response
+
 ## 0.0.1
 
   - Miguel Negrón
