@@ -1,6 +1,11 @@
 cookbook-mem2incident CHANGELOG
 ===============
 
+## 0.0.3
+
+  - Miguel Negron
+    - [c2533de] Fix bug consul port as string
+
 ## 0.0.2
 
   - Miguel Negrón
