@@ -19,7 +19,7 @@ action :add do
     end
 
     execute 'create_user' do
-      command "/usr/sbin/useradd -r #{user}"
+      command "/usr/sbin/useradd -r #{user} -s /sbin/nologin"
       ignore_failure true
       not_if "getent passwd #{user}"
     end
