@@ -1,9 +1,14 @@
 cookbook-mem2incident CHANGELOG
 ===============
 
+## 0.1.1
+
+  - Miguel Negrón
+    - [834df80] Add pre and postun to clean the cookbook
+
 ## 0.1.0
 
-  - Miguel Negron
+  - Miguel Negrón
     - [10c2377] Nologin user
     - [b0f6ba3] fix lint
     - [9090d8f] Update CHANGELOG
@@ -15,7 +20,7 @@ cookbook-mem2incident CHANGELOG
   - Miguel Negrón
     - [a56d352] Merge branch 'master' into development
     - [fb25c64] Merge pull request #1 from redBorder/feature/incident_response
-  - manegron
+  - Miguel Negrón
     - [10c2377] Nologin user
     - [b0f6ba3] fix lint
     - [9090d8f] Update CHANGELOG
@@ -30,7 +35,7 @@ cookbook-mem2incident CHANGELOG
 
 ## 0.0.3
 
-  - Miguel Negron
+  - Miguel Negrón
     - [c2533de] Fix bug consul port as string
 
 ## 0.0.2
