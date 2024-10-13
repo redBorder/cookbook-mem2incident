@@ -45,14 +45,18 @@ action :add do
                 insecure_skip_verify: insecure_skip_verify,
                 loop_interval: loop_interval,
                 auth_token: auth_token)
-      notifies :restart, 'service[redborder-mem2incident]', :delayed
+      notifies :restart, 'service[redborder-mem2incident]', :delayed unless node['redborder']['leader_configuring']
     end
 
     service 'redborder-mem2incident' do
       service_name 'redborder-mem2incident'
       ignore_failure true
-      supports status: true, restart: true, enable: true
-      action [:start, :enable]
+      supports status: true, restart: true, enable: true, start: true, stop: true
+      if node['redborder']['leader_configuring']
+        action [:enable, :stop]
+      else
+        action [:enable, :start]
+      end
     end
 
     Chef::Log.info('Redborder mem2incident cookbook has been processed')
