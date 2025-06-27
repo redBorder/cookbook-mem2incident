@@ -1,6 +1,11 @@
 cookbook-mem2incident CHANGELOG
 ===============
 
+## 1.0.1
+
+  - nilsver
+    - [ad3fb58] remove flush cache
+
 ## 1.0.0
 
   - Miguel Negrón
