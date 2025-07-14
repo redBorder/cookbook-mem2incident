@@ -7,7 +7,7 @@ action :add do
   begin
     user = new_resource.user
 
-    memcached_servers = new_resource.memcached_servers
+    redis_servers = new_resource.redis_servers
     api_endpoint = new_resource.api_endpoint
     insecure_skip_verify = new_resource.insecure_skip_verify
     loop_interval = new_resource.loop_interval
@@ -39,7 +39,7 @@ action :add do
       mode '0644'
       ignore_failure true
       cookbook 'mem2incident'
-      variables(memcached_servers: memcached_servers,
+      variables(redis_servers: redis_servers,
                 api_endpoint: api_endpoint,
                 insecure_skip_verify: insecure_skip_verify,
                 loop_interval: loop_interval,
