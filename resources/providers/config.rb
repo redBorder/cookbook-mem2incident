@@ -6,12 +6,13 @@ include Rbmem2incident::Helper
 action :add do
   begin
     user = new_resource.user
-
     redis_servers = new_resource.redis_servers
     api_endpoint = new_resource.api_endpoint
     insecure_skip_verify = new_resource.insecure_skip_verify
     loop_interval = new_resource.loop_interval
     auth_token = new_resource.auth_token
+    redis_secrets = new_resource.redis_secrets
+    redis_password = redis_secrets['pass'] unless redis_secrets.empty?
 
     dnf_package 'redborder-mem2incident' do
       action :upgrade
@@ -43,7 +44,8 @@ action :add do
                 api_endpoint: api_endpoint,
                 insecure_skip_verify: insecure_skip_verify,
                 loop_interval: loop_interval,
-                auth_token: auth_token)
+                auth_token: auth_token,
+                redis_password: redis_password)
       notifies :restart, 'service[redborder-mem2incident]', :delayed unless node['redborder']['leader_configuring']
     end
 
