@@ -12,6 +12,7 @@ action :add do
     auth_token = new_resource.auth_token
     redis_hosts = new_resource.redis_hosts
     redis_port = new_resource.redis_port
+    redis_db = new_resource.redis_db
     redis_secrets = new_resource.redis_secrets
     redis_password = redis_secrets['pass'] unless redis_secrets.empty?
 
@@ -47,6 +48,7 @@ action :add do
                 auth_token: auth_token,
                 redis_hosts: redis_hosts,
                 redis_port: redis_port,
+                redis_db: redis_db,
                 redis_password: redis_password)
       notifies :restart, 'service[redborder-mem2incident]', :delayed unless node['redborder']['leader_configuring']
     end
