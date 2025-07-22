@@ -6,12 +6,15 @@ include Rbmem2incident::Helper
 action :add do
   begin
     user = new_resource.user
-
-    memcached_servers = new_resource.memcached_servers
     api_endpoint = new_resource.api_endpoint
     insecure_skip_verify = new_resource.insecure_skip_verify
     loop_interval = new_resource.loop_interval
     auth_token = new_resource.auth_token
+    redis_hosts = new_resource.redis_hosts
+    redis_port = new_resource.redis_port
+    redis_db = new_resource.redis_db
+    redis_secrets = new_resource.redis_secrets
+    redis_password = redis_secrets['pass'] unless redis_secrets.empty?
 
     dnf_package 'redborder-mem2incident' do
       action :upgrade
@@ -39,11 +42,14 @@ action :add do
       mode '0644'
       ignore_failure true
       cookbook 'mem2incident'
-      variables(memcached_servers: memcached_servers,
-                api_endpoint: api_endpoint,
+      variables(api_endpoint: api_endpoint,
                 insecure_skip_verify: insecure_skip_verify,
                 loop_interval: loop_interval,
-                auth_token: auth_token)
+                auth_token: auth_token,
+                redis_hosts: redis_hosts,
+                redis_port: redis_port,
+                redis_db: redis_db,
+                redis_password: redis_password)
       notifies :restart, 'service[redborder-mem2incident]', :delayed unless node['redborder']['leader_configuring']
     end
 
