@@ -1,6 +1,15 @@
 cookbook-mem2incident CHANGELOG
 ===============
 
+## 1.1.0
+
+  - Rafael Gomez
+    - [5a01219] Adding redis db number to use
+    - [3a0614c] Passing redis hosts, port and password to config.yml.erb
+    - [7863cc0] Passing redis DB password to config.yml.erb template
+    - [439045b] Changing default port from redis server from 6379 to 16379
+    - [204aa9b] Replacing memcached_servers to redis_servers
+
 ## 1.0.2
 
   - jnavarrorb
