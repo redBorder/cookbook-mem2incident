@@ -1,6 +1,11 @@
 cookbook-mem2incident CHANGELOG
 ===============
 
+## 1.1.1
+
+  - manegron
+    - [0177499] Upload cookbook only if opscode-erchef is active
+
 ## 1.1.0
 
   - Rafael Gomez
