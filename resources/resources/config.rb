@@ -12,7 +12,6 @@ attribute :redis_hosts, kind_of: Array, default: []
 attribute :redis_port, kind_of: Integer, default: 26379
 attribute :redis_db, kind_of: Integer, default: 0
 attribute :redis_secrets, kind_of: Hash, default: {}
-# true: the Redis password comes from OpenBao (agent-rendered config in /run)
 attribute :openbao, kind_of: [TrueClass, FalseClass], default: false
 attribute :api_endpoint, kind_of: String, default: 'https://webui.service/api/v1/incidents'
 attribute :insecure_skip_verify, kind_of: [TrueClass, FalseClass], default: true

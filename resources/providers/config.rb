@@ -15,7 +15,6 @@ action :add do
     redis_db = new_resource.redis_db
     redis_secrets = new_resource.redis_secrets
     openbao = new_resource.openbao
-    # With OpenBao config.yml is an agent template: the agent puts the password in, in /run only
     redis_password = openbao ? '{{ with secret "secret/data/redis" }}{{ .Data.data.pass }}{{ end }}' : (redis_secrets['pass'] unless redis_secrets.empty?)
 
     dnf_package 'redborder-mem2incident' do
