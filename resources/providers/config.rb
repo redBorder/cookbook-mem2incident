@@ -13,7 +13,7 @@ action :add do
     redis_hosts = new_resource.redis_hosts
     redis_port = new_resource.redis_port
     redis_db = new_resource.redis_db
-    redis_password = '{{ with secret "secret/data/redis" }}{{ .Data.data.pass }}{{ end }}'
+    redis_password = OpenBao.ref('redis', 'pass')
 
     dnf_package 'redborder-mem2incident' do
       action :upgrade
