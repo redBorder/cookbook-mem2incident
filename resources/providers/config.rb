@@ -13,8 +13,7 @@ action :add do
     redis_hosts = new_resource.redis_hosts
     redis_port = new_resource.redis_port
     redis_db = new_resource.redis_db
-    redis_secrets = new_resource.redis_secrets
-    redis_password = redis_secrets['pass'] unless redis_secrets.empty?
+    redis_password = OpenBao.ref('redis', 'pass')
 
     dnf_package 'redborder-mem2incident' do
       action :upgrade
@@ -35,12 +34,8 @@ action :add do
       end
     end
 
-    template '/etc/redborder-mem2incident/config.yml' do
+    openbao_secret_file 'redborder-mem2incident-config' do
       source 'config.yml.erb'
-      owner user
-      group user
-      mode '0644'
-      ignore_failure true
       cookbook 'mem2incident'
       variables(api_endpoint: api_endpoint,
                 insecure_skip_verify: insecure_skip_verify,
@@ -50,6 +45,15 @@ action :add do
                 redis_port: redis_port,
                 redis_db: redis_db,
                 redis_password: redis_password)
+      destination '/run/rb-secrets/redborder-mem2incident/config.yml'
+      owner 'root'
+      group user
+      mode '0640'
+      unit 'redborder-mem2incident'
+    end
+
+    link '/etc/redborder-mem2incident/config.yml' do
+      to '/run/rb-secrets/redborder-mem2incident/config.yml'
       notifies :restart, 'service[redborder-mem2incident]', :delayed unless node['redborder']['leader_configuring']
     end
 
